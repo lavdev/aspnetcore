@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using StoreOfBuild.Domain.Dtos;
+﻿using Microsoft.AspNetCore.Mvc;
 using StoreOfBuild.Domain.Products;
-using StoreOfBuild.Web.Models;
+using StoreOfBuild.Web.ViewModel;
 
 namespace StoreOfBuild.Web.Controllers
 {
@@ -18,19 +12,22 @@ namespace StoreOfBuild.Web.Controllers
         {
             _service = service;
         }
+
         public IActionResult Index()
         {
             return View();
         }
+
         public IActionResult CreateOrEdit()
         {
             return View();
-        }        
+        }
+
 
         [HttpPost]
-        public IActionResult CreateOrEdit(CategoryDto dto)
+        public IActionResult CreateOrEdit(CategoryViewModel viewModel)
         {
-           _service.Store(dto);
+           _service.Store(viewModel.Id, viewModel.Name);
            return View();
         }        
 

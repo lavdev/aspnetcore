@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +11,7 @@ namespace StoreOfBuild.Web
 {
     public class Startup
     {
+        [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,6 +29,7 @@ namespace StoreOfBuild.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            // I create this middleware to manage context's "SaveChanges" .. this because the context Life Cycle Application
             app.Use(async (context, next) =>
             {
                 // execute request

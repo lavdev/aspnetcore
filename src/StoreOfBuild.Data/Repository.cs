@@ -12,9 +12,9 @@ namespace StoreOfBuild.Data
 
         public ApplicationDbContext _context { get; }
 
-        public T GetId(int Id)
+        public T GetId(int id)
         {
-            return _context.Set<T>().SingleOrDefault( e => e.Id ==  Id);
+            return _context.Set<T>().SingleOrDefault( e => e.Id ==  id);
         }
 
         public void Save(T entity)

@@ -1,15 +1,23 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace StoreOfBuild.Domain.Products
 {
     public class Category : Entity
     {
         public string Name {get; private set;}
 
+        [SuppressMessage("ReSharper", "UnusedMember.Global")]
+        /***
+         * Class constructor
+         * This constructor is used to DI
+         *  
+         */
         public Category() {}
 
         /// <summary>
         /// Class constructor
         /// </summary>
-        /// <param name="Name">Category's name</param>
+        /// <param name="name">Category's name</param>
         public Category(string name){
             CheckAndSet(name);
         }
@@ -19,7 +27,8 @@ namespace StoreOfBuild.Domain.Products
         /// </summary>
         /// <param name="name">Category's name</param>
         private void CheckAndSet(string name){
-            DomainException.When(string.IsNullOrEmpty(Name), "Name is required");
+            DomainException.When(string.IsNullOrEmpty(name), "Name is required");
+            DomainException.When(name.Length < 3, "Invalid Name");
             Name = name;
         }
 
