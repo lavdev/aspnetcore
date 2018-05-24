@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using StoreOfBuild.Domain;
 using System.Linq;
+using StoreOfBuild.Domain.Products;
 
 namespace StoreOfBuild.Data
 {
@@ -14,12 +16,18 @@ namespace StoreOfBuild.Data
 
         public T GetId(int id)
         {
-            return _context.Set<T>().SingleOrDefault( e => e.Id ==  id);
+            return _context.Set<T>().SingleOrDefault(e => e.Id == id);
         }
 
         public void Save(T entity)
         {
             _context.Set<T>().Add(entity);
         }
+
+        public IEnumerable<T> GetList()
+        {
+            return _context.Set<T>().AsEnumerable();
+        }
     }
+
 }

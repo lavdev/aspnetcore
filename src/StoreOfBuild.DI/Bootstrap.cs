@@ -12,9 +12,9 @@ namespace StoreOfBuild.DI
         {
 
             services.AddDbContext<ApplicationDbContext>(options =>  options.UseSqlServer(connectionString));
-            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-            services.AddTransient(typeof(CategoryService));
-            services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork));
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(CategoryService));
+            services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
         }
     }
 }

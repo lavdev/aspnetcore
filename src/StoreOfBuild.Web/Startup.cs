@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using StoreOfBuild.DI;
 using StoreOfBuild.Domain;
+using StoreOfBuild.Web.Filters;
 
 namespace StoreOfBuild.Web
 {
@@ -23,7 +24,11 @@ namespace StoreOfBuild.Web
         public void ConfigureServices(IServiceCollection services)
         {
             Bootstrap.Configure(services, Configuration.GetConnectionString("dbTest"));
-            services.AddMvc();
+            services.AddMvc(configue =>
+            {
+                configue.Filters.Add(typeof(CustomExceptionFilter));
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +62,7 @@ namespace StoreOfBuild.Web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Product}/{action=Index}/{id?}");
             });
         }
     }

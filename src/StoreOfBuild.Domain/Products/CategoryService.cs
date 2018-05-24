@@ -1,4 +1,4 @@
-using StoreOfBuild.Domain.Dtos;
+using System.Collections.Generic;
 
 namespace StoreOfBuild.Domain.Products
 {
@@ -8,6 +8,17 @@ namespace StoreOfBuild.Domain.Products
 
         public CategoryService(IRepository<Category> categoryRespository){
             _categoryRespository = categoryRespository;
+        }
+
+
+        public IEnumerable<Category>  GetList()
+        {
+            return _categoryRespository.GetList();
+        }
+
+        public Category GetCategory(int id)
+        {
+            return _categoryRespository.GetId(id);
         }
 
         public void Store(int id, string name)

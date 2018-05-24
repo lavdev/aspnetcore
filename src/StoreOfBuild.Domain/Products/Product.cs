@@ -4,6 +4,7 @@ namespace StoreOfBuild.Domain.Products
     {
 
         public int Id { get; private set; }
+
         public string Name { get; private set; }
 
         public Category Category { get; private set; }

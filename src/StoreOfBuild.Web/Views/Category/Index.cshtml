@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<StoreOfBuild.Web.ViewModel.CategoryViewModel>
+@{
     ViewData["Title"] = "Category";
 }
 <br>
@@ -12,31 +13,28 @@
 <div class="row">
     <div class="col-md-12">
         <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">"Name"</th>
+                </tr>
+            </thead>
             <tbody>
-                <tr>
-                    <td>
-                        <a class="name">Category 1</a>
-                    </td>
-                    <td>
-                        <a class="btn">Edit</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a class="name">Category 2</a>
-                    </td>
-                    <td>
-                        <a class="btn">Edit</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a class="name">Category 3</a>
-                    </td>
-                    <td>
-                        <a class="btn">Edit</a>
-                    </td>
-                </tr>
+
+            @foreach (var item in @Model)
+            {
+            <tr>
+                <td> @Html.DisplayFor(i => item.Id) </td>
+                <td> @Html.DisplayFor(i => item.Name) </td>
+                <td>
+                    <a asp-action="CreateOrEdit" asp-route-id="@item.Id">Edit</a> |
+                    <!---<form asp-action="Delete" asp-controller="Category" method="POST">
+                        <input type="hidden" name="id" value="@item.Id">
+                        <button type="submit" class="btn btn-link" role="link">Delete</button>
+                    </form>-->
+                </td>
+            </tr>
+            }
             </tbody>
         </table>
     </div>
